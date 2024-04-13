@@ -1,36 +1,23 @@
-﻿
-namespace RatingCarsForSale
+﻿namespace RatingCarsForSale
 {
-
-
-    //--------klasa CarForSale operuje na pamięci operacyjnej komputera
-    //--------nie robiłem dla niej w pliku program.cs żadnej sekcji
-    //--------zrobiłem tylko testy jednostkowe dla tej klasy.
-    public class CarForSale : CarBase
+    public class CarForSaleInMemory : CarBase
     {
         public override event GradeAddedToCarDelegate GradeAddedToCar;
-        public override event DescriptionAddedToCarDelegate DescriptionAddedToCar;
-        
-        
         new List<int> grades = new List<int>();
-        new List<string> descriptionUser = new List<string>();
-
- 
-        public CarForSale(string namecar, string modelcar, Body bodytype,int enginesize,
-                           float batterysize, Fuel fueltype, string color, int hp,
-                           float fuelcoms, float enercoms, int maxspeed, int yearproduction, float price) : 
-                           base(namecar, modelcar, bodytype, enginesize, batterysize,fueltype, color, hp,fuelcoms, enercoms,maxspeed, yearproduction, price)
+       
+        public float Price { get; private set; }
+        public CarForSaleInMemory(string namecar, string modelcar, Body bodytype, int enginecap,
+                          Fuel fueltype, string color, int hp, float fuelcoms,
+                          int yearproduction, float price) : 
+                           base(namecar, modelcar, bodytype, enginecap ,fueltype, color, hp,fuelcoms, yearproduction)
         {
-           
+            this.Price = price;
         }
         public List<int> GetGrades()
-        { 
+        {
             return grades;
         }
-        public List<string> GetDescription()
-        { 
-            return descriptionUser;
-        }
+      
         public override void AddGrade(int grade)
         {
             if (grade >=0 && grade <=10)
@@ -41,7 +28,7 @@ namespace RatingCarsForSale
             }
             else
             {
-                throw new Exception("Nieprawidłowa ocena (przedział 0-10)!");
+                throw new Exception("Invalid data. Grade out of range: range 0-10!!!");
             }
         }
 
@@ -70,15 +57,7 @@ namespace RatingCarsForSale
 
             }
         }
-        public override void AddDescription(string desc, int grade)
-        { 
-            descriptionUser.Add(grade.ToString() + "::"+ desc);
-            if (DescriptionAddedToCar != null)
-            { 
-                DescriptionAddedToCar(this, EventArgs.Empty);
-            }
-        }
-
+        
         public override void AddGrade(string grade) 
         {
             if (int.TryParse(grade, out int result))

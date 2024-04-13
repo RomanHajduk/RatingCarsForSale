@@ -2,8 +2,6 @@
 {
     Petrol = 0,
     Diesel = 1,
-    Hybrid = 2,
-    ElectricVehicle = 3
 }
 public enum Body
 {
@@ -20,16 +18,13 @@ public enum Body
 
 namespace RatingCarsForSale
 {
-    public interface ICars 
+    public interface ICar 
     { 
         string NameCar { get; }
         string ModelCar { get; }
-        int EngineSize { get; }
-        float BatteryCapacity {  get; }
+        int EngineCapacity { get; }
         Fuel FuelType { get; }
-
         Body BodyType { get; }
-        int MaximumSpeed { get; }
         int YearProduction { get; }
         int HP { get; }
         string Color { get; }
@@ -37,7 +32,6 @@ namespace RatingCarsForSale
         void AddGrade(int grade);
         void AddGrade(char grade);
         void AddGrade(string grade);
-        void AddDescription(string description, int grade);
         Statistics GetStatistics();
         CharacteristicCar GetCharacteristicCar();
     }

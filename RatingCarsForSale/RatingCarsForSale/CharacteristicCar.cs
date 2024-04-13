@@ -31,7 +31,7 @@ namespace RatingCarsForSale
                     this.CarCondition = "jest to stosunkowo młode auto";
                     break;
                 case > 8 and <= 12:
-                    this.CarCondition = "ma średni wiek jakdla auta";
+                    this.CarCondition = "ma średni wiek jak na auto";
                     break;
                 case > 10 and <= 15:
                     this.CarCondition = "to już stare auto";
@@ -56,7 +56,7 @@ namespace RatingCarsForSale
                 case > 5.5f and <=7:
                     if (car.FuelType == Fuel.Diesel)
                     {
-                        this.FuelConsumption = "Ten diesel pali niewiele więcej i jest ekonomiczny.";
+                        this.FuelConsumption = "Ten diesel pali nieco więcej paliwa niż najbardziej oszczędne jednostki, ale i tak jest ekonomiczny.";
                     }
                     if (car.FuelType == Fuel.Petrol)
                     {
@@ -85,10 +85,10 @@ namespace RatingCarsForSale
                     break;
             }
 
-            this.DescriptionCar = $"Auto marki {car.NameCar} model {car.ModelCar} to {car.BodyType.ToString().ToLower()} w kolorze {car.Color}m posiada" +
-               $" {(car.FuelType == Fuel.Petrol ? "silnik benzynowy" : (car.FuelType == Fuel.Diesel)? "silnik diesla" : car.FuelType == Fuel.Hybrid ? " napęd hybrydowy (silnik benzynowy + silnik elektryczny" : "silnik elektryczny")}" +
-               $" {(car.FuelType == Fuel.ElectricVehicle?$"o mocy {car.HP}":car.FuelType == Fuel.Hybrid? $"o pojemności {car.EngineSize} cm3 i mocy łącznej {car.HP} KM" : $"o pojemności {car.EngineSize} cm3 o mocy {car.HP} KM ")}" +
-               $"i prędkości maksymalnej {car.MaximumSpeed} km/h. Egzemplarz został wyprodukowany w roku {car.YearProduction}.";
+            this.DescriptionCar = $"Auto marki {car.NameCar} model {car.ModelCar} to {car.BodyType.ToString().ToLower()} w kolorze {car.Color.ToLower()}m posiada" +
+               $" {(car.FuelType == Fuel.Petrol ? "silnik benzynowy" :  "silnik diesla" )}" +
+               $" o mocy {car.HP} o pojemności {car.EngineCapacity} cm3." +
+               $" Egzemplarz został wyprodukowany w roku {car.YearProduction}.";
         }
     }
 }
