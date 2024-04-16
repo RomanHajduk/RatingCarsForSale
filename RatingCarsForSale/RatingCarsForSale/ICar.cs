@@ -28,6 +28,7 @@ namespace RatingCarsForSale
         int YearProduction { get; }
         int HP { get; }
         string Color { get; }
+        float Price { get; }
         
         void AddGrade(int grade);
         void AddGrade(char grade);
